@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Company{% endblock %}
+
+{% block content %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+        <a class="navbar-brand" href="#">CSV TO DATABASE CONVERTER</a>
+
+        <!-- Navbar content -->
+
+    </nav>
+
+    <div class="container mt-4">
+
+        <h1 class="mb-4" >Upload CSV File</h1>
+
+        <form method="post" class="form-group" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <h6>
+                        <label class="form-check-label" for="">
+                            TABLE NAME ▼
+                        </label>
+                    </h6>
+
+                </div>
+                <div class="form-check form-check-inline col-sm-4">
+                    <input class="form-check-input" type="radio" name="names" id="random" value="random" checked>
+                    <label class="form-check-label" for="random">
+                        Random Name
+                    </label>
+                </div>
+
+                <div class="form-check form-check-inline col-sm-8 mt-2">
+                    <input class="form-check-input" type="radio" name="names" id="custom" value="custom">
+                    <label class="form-check-label" for="custom">
+                        Custom Name
+                    </label>
+                    <input type="text" class="form-control" name="table_name" id="table_name">
+                </div>
+            </div>
+
+            <div class="form-group row mt-4">
+                <label class="col-sm-2 col-form-label">CSV File:</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control-file" required name="excel_csv_file" id="excel_csv_file"
+                           accept=".csv">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">SUBMIT</button>
+                </div>
+            </div>
+
+        </form>
+
+        {% if Table_Name %}
+
+            <div class="card my-4">
+                <div class="card-body">
+                    <h5 class="card-title">Table Name: {{ Table_Name }}</h5>
+                    <p class="card-text">
+                    <pre class="bg-light p-3">{{ query }}</pre>
+                    </p>
+                </div>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    <script>
+
+        // JavaScript from previous example
+
+    </script>
+
+{% endblock %}
